@@ -17,6 +17,69 @@
 
 ## Methods
 
+Our project at MedCare Wellness Research Center started with a comprehensive analysis of a large dataset, using a suite of Python libraries, including Pandas, NumPy, Scikit-learn, Seaborn, and Plotly. This exploration was crucial to understand the dataset's unique characteristics, including its structure and the distribution of various variables. We diligently followed the OSEMN pipeline, focusing initially on obtaining, scrubbing, and exploring the data. This involved reading the dataset, preprocessing it to remove any anomalies, and identifying hidden patterns that could potentially enhance the predictability of our target variable. Let’s start with OSE:
+
+**Dataset Examination**
+
+The EDA started with a thorough examination of the dataset, focusing on understanding its structure, the distribution of variables, and any initial trends or patterns. 
+Then we focused on understanding the distribution of numerical variables like `Hours of Sleep`, `Mental Health`, `Physical health` and `BMI`. These univariate analyses were revealing, showing multimodal distributions in some variables and skewed distributions in others, such as mental health and physical health scores.Our team attempted to address these skewness issues with log transformations, but the results were not as effective as we hoped. Additionally, we used heatmaps to identify correlations among numerical variables.
+
+![Numerical Variables Distribution](images/skew1.png)
+
+**Identification of Anomalies**
+
+During the initial EDA, we noticed a few anomalies in the dataset. Specifically, we observed that some features, such as `Physical Health` and `Mental Health`, were extremely skewed. This skewness caused an imbalance in the dataset that affected the performance of our models. Moreover after a bivariate analysis it appears that patients' feelings are exactly the opposite of their health score. We initially assumed that a high health score meant that the patient was healthy, but after this analysis we saw that lots of patients that were feeling poor had a physical health score above 15, while those feeling good, very good and excellent have a physical health score around zero we had to reconsider the meaning of the score `Physical Health`, with a high value indicating that the patient is ill and a low value meaning that the patient is healthy.
+
+As the features `Mental Health` and `Physical Health` both have most of their data with a value of 0 another possible interpretation could be that those are filling values, but removing the 0 values of both these columns meant reducing drastically the size of our dataset, and also removing all those 0 that weren’t filling values.
+
+*For this reason we decided to first build our models on the entire dataset, removing only the outliers identified using our domain knowledge, and then build the same models on a reduced dataframe where entries with a physical health value of zero, suspected to be filler values, were removed.*
+
+**Preprocessing**
+
+In the preprocessing stage for the complete dataset, we removed potential outliers, such as individuals with unusually high or low BMI values or those sleeping more than 12 hours per day. We also removed the 'PatientID' feature, which was deemed irrelevant. The dataset then underwent encoding processes, including label and one-hot encoding, tailored to the nature of our data. Subsequent correlation analysis led to the elimination of certain variables that showed minimal correlation with physical health, including ethnicities, gender, skin cancer, and alcohol consumption data.
+
+The dataset was then split into training and testing subsets, followed by scaling, to prepare it for the modeling phase.
+
+
+**Model Selection and Problem Definition**
+
+We recognized our project's core objective as a regression problem, due to the continuous nature of our target variable, for this reason we opted for decision trees, random forests, and histogram-based gradient boosting models. These models were selected for their compatibility with our data and the specific requirements of our analysis. The rationale behind choosing these models, along with the specifics of their tuning and the metrics used to evaluate their performance, will be elaborated in the Experimental Design section that will be dedicated to Model and Interpretation phases of the OSEMN.
+
+**Second Exploration and Analysis**
+
+The second phase of our analysis at MedCare Wellness Research Center involved a refined approach to the dataset, focusing on a more rigorous data cleaning process and exploring multivariate relationships by reshaping the dataset based on domain knowledge and statistical methods, driven by our hypothesis that some entries with a physical health score of 0 were fillers and not representative of actual health conditions. 
+
+
+**Data Filtering and Cleaning**
+
+In this phase we removed entries that had a `Physical Health`  score of 0 setting some specific conditions which take into account several hypotheses related to it, for example `Mental Health`, `How do you Feel`, `Do you Exercise`and others.
+Those indicators suggest the impossibility of having perfect health in the presence of certain conditions like walking difficulty, poor or fair self-reported health, no exercise, extreme BMI values, and others. We also eliminated edge-cases like extreme sleeping hours and extremely high or low BMI values. This operation resulted in a removal of 100.000 data 
+ 
+**Multivariate and Univariate Analysis**
+
+Following the data filtering, we conducted a multivariate analysis using pair plots to identify patterns and relationships between different variables and the target variable 'Physical Health'. This analysis provided insights into clusters of low physical health scores associated with healthier ranges in other variables, like BMI and hours of sleep. Univariate analysis was also performed to understand the distributions of 'Hours of Sleep', 'Mental Health', 'BMI', and 'Physical Health'. We observed significant skewness in these distributions like in the first EDA, which we attempted to mitigate with log transformations this time obtaining better results especially for 'Hours of Sleep' and 'BMI', resulting in more symmetric, bell-shaped distributions.
+
+![Multivariate Analysis](images/multivariate2.png)
+![Log Transformation Hours of Sleep](images/log2sleep.png)
+![Log Transformation BMI](images/log2bmi.png)
+
+
+**Encoding and Correlation Analysis**
+
+The dataset underwent encoding processes for categorical variables using one-hot and label encoding. A correlation heatmap was then created to understand the relationships between different variables and the target variable. Based on this, variables with negligible correlations, such as `Ethnicity_Black`,`Ethnicity_Asian`,`Gender_M` and others, were considered for removal. After the removal we create another Heatmap this time with only the most relevant features.
+
+**Dataset Splitting, Scaling, and Reflection**
+
+The dataset was split into training and test sets, and scaling was applied to ensure uniformity in magnitude. 
+
+**Model Selection and Problem Definition**
+
+In this phase we selected Linear Regression, Decision Trees, Random Forests, and Hist Gradient Boosting models. These models were implemented to compare the results we obtained in our first analysis, but now we also added Linear Regression because as it’s a model very sensitive to non-normalized data we want to emphasize the result obtained after the transformation of the dataset. In fact due to the inconsistent results obtained after we implemented log transformations it was impossible for us to get some useful insights implementing it before.
+
+Results 
+
+We then reflected on the progress made. The decision to remove certain entries led to an improvement in the models' performance as evidenced by lower average error (MAE) and higher R-squared values. This affirmed the importance of thorough data cleaning in predictive modeling.
+
 
 
 
