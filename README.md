@@ -53,13 +53,13 @@ In the first phase of our project, where we utilized the initial dataset, the re
 These initial findings were pivotal as they brought to light the critical need for model tuning. The moderate performance across the board suggested that while our models were on the right track, there was significant room for improvement, especially in terms of enhancing their predictive capabilities. This was particularly evident in their limited success in capturing the full spectrum of variance within our complex dataset.
 The results from this phase underscored an important insight: a more selective approach in data preprocessing could potentially lead to better model performance. It became clear that fine-tuning our models and perhaps even adopting a more targeted selection of the data could yield more accurate and reliable predictions. This understanding guided our next steps, where we would delve deeper into optimizing our models and exploring the impact of refined data selection on their performance.
 
-![Alt text](image.png)
+![Alt text](models_completedf.png)
 
 Upon revising the dataset to exclude potential filling values, we embarked on the second phase of our model evaluation. This step involved a re-assessment of the models with the newly refined dataset, leading to notably enhanced performances. 
 This phase marked a clear improvement in accuracy and reliability across all models, as evidenced by reduced Mean Absolute Error (MAE) and increased R-squared values. These metrics were especially pronounced in the performance of the Hist Gradient Boosting model, which emerged as the standout performer. The enhanced dataset allowed this model to excel, showcasing its superior capability in predicting physical health outcomes.
 The positive outcomes of this phase reinforced the value of our data cleaning and refinement process. It became evident that our approach to data selection and preprocessing was instrumental in elevating the predictive power of our models. This phase not only demonstrated the overall improvements in model performance but also highlighted the proficiency of the Hist Gradient Boosting model in our refined context.
 
-![Alt text](image.png)
+![Alt text](models_df.png)
 
 
 ## Conclusions
