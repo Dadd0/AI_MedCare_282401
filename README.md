@@ -94,7 +94,7 @@ We have synthesized our journey into a flowchart to provide readers with a clear
 
 ### Flowchart
 
-![FLowchart](images/flowchart.png)
+![FLowchart](images/flowchart2.png)
 
 
 ## Experimental design 🔬
