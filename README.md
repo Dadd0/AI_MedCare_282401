@@ -1,4 +1,4 @@
-# MedCare Wellness Research Center
+# MedCare Wellness Research Center 🩺
 
 ### Team Members
 - Edoardo Cocciò 282401
@@ -6,8 +6,8 @@
 - Lorenzo Laterza 283121
 
 
-## Introduction
-*At MedCare Wellness Research Center, we embark on a groundbreaking journey to predict the physical health of individuals using an extensive dataset encompassing 261,311 records.* Our ambitious project stands out in its scale and depth, delving into an array of factors that influence our physical health. The dataset is a rich tapestry of information, featuring a diverse range of attributes from physical and mental health assessments to lifestyle indicators such as exercise habits, sleep patterns, and smoking status. Notably, it comprises a higher proportion of categorical variables (13 in total) compared to numerical ones (5), including the unique PatientID for each individual.
+## Introduction ✍️
+*At MedCare Wellness Research Center, we embark on a groundbreaking journey to predict the `Physical health` of individuals using an extensive dataset encompassing 261,311 records.* Our ambitious project stands out in its scale and depth, delving into an array of factors that influence our physical health. The dataset is a rich tapestry of information, featuring a diverse range of attributes from physical and mental health assessments to lifestyle indicators such as exercise habits, sleep patterns, and other health status. Notably, it comprises a higher proportion of categorical variables (13 in total) compared to numerical ones (5), including the unique PatientID for each individual.
 
 *Our approach is rooted in the OSEMN framework*, a robust and systematic pipeline that includes obtaining, scrubbing, exploring, modeling, and interpreting data. This comprehensive methodology ensures a meticulous and thorough analysis of the dataset. A key component of our project is an in-depth Exploratory Data Analysis (EDA), designed to uncover hidden patterns and insights, and visualizing our data. This step is crucial as it lays the foundation for subsequent phases of our research.
 
@@ -15,16 +15,24 @@
 
 *Our approach is characterized by a rigorous experimentation with a variety of machine learning models.* This phase is not just about applying algorithms; it's about a meticulous and iterative process of fine-tuning each model to achieve optimal performance. We thoroughly test various models, adjusting and calibrating them to hone in on the most effective techniques for predicting physical health outcomes. 
 
-## Methods
+## Methods 🔍
 
 Our project at MedCare Wellness Research Center started with a comprehensive analysis of a large dataset, using a suite of Python libraries, including Pandas, NumPy, Scikit-learn, Seaborn, and Plotly. This exploration was crucial to understand the dataset's unique characteristics, including its structure and the distribution of various variables. We diligently followed the OSEMN pipeline, focusing initially on obtaining, scrubbing, and exploring the data. This involved reading the dataset, preprocessing it to remove any anomalies, and identifying hidden patterns that could potentially enhance the predictability of our target variable. Let’s start with OSE:
 
 **Dataset Examination**
 
 The EDA started with a thorough examination of the dataset, focusing on understanding its structure, the distribution of variables, and any initial trends or patterns. 
-Then we focused on understanding the distribution of numerical variables like `Hours of Sleep`, `Mental Health`, `Physical health` and `BMI`. These univariate analyses were revealing, showing multimodal distributions in some variables and skewed distributions in others, such as mental health and physical health scores.Our team attempted to address these skewness issues with log transformations, but the results were not as effective as we hoped. Additionally, we used heatmaps to identify correlations among numerical variables.
+Then we focused on understanding the distribution of numerical variables like `Hours of Sleep`, `Mental Health`, `Physical health` and `BMI`. These univariate analyses were revealing, showing multimodal distributions in some variables and skewed distributions in others, such as mental health and physical health scores.Our team attempted to address these skewness issues with log transformations, but the results were not as effective as we hoped. 
 
 ![Numerical Variables Distribution](images/skew1.png)
+
+Additionally, we used heatmaps to identify correlations among numerical variables.
+
+![Heatmap](initial_heatmap.png)
+
+Moreover, we used boxplots in order to compare our target variable with respect to all the other categorical variables, and we made a pie chart for gender distribution and a countplot for ethnicity distribution to check whether these variables were balanced or not, discovering that gender is quite balanced while ethnicity is clearly unbalanced, with a majority of the white ethnicity. 
+
+![Distribution of Gender and Ethnicity](Gender_ethnicity_distribution.png)
 
 **Identification of Anomalies**
 
@@ -36,7 +44,9 @@ As the features `Mental Health` and `Physical Health` both have most of their da
 
 **Preprocessing**
 
-In the preprocessing stage for the complete dataset, we removed potential outliers, such as individuals with unusually high or low BMI values or those sleeping more than 12 hours per day. We also removed the 'PatientID' feature, which was deemed irrelevant. The dataset then underwent encoding processes, including label and one-hot encoding, tailored to the nature of our data. Subsequent correlation analysis led to the elimination of certain variables that showed minimal correlation with physical health, including ethnicities, gender, skin cancer, and alcohol consumption data.
+In the preprocessing stage for the complete dataset, we removed potential outliers, such as individuals with unusually high or low BMI values or those sleeping more than 12 hours per day. We also removed the `PatientID` feature, which was deemed irrelevant. The dataset then underwent encoding processes, including label and one-hot encoding, tailored to the nature of our data. Subsequent correlation analysis led to the elimination of certain variables that showed minimal correlation with physical health, including ethnicities, gender, skin cancer, and alcohol consumption data, as we can see in the following chart:
+
+![Correlation with physical health](corr_physicalhealth.png)
 
 The dataset was then split into training and testing subsets, followed by scaling, to prepare it for the modeling phase.
 
@@ -53,7 +63,7 @@ The second phase of our analysis at MedCare Wellness Research Center involved a 
 **Data Filtering and Cleaning**
 
 In this phase we removed entries that had a `Physical Health`  score of 0 setting some specific conditions which take into account several hypotheses related to it, for example `Mental Health`, `How do you Feel`, `Do you Exercise`and others.
-Those indicators suggest the impossibility of having perfect health in the presence of certain conditions like walking difficulty, poor or fair self-reported health, no exercise, extreme BMI values, and others. We also eliminated edge-cases like extreme sleeping hours and extremely high or low BMI values. This operation resulted in a removal of 100.000 data 
+Those indicators suggest the impossibility of having perfect health in the presence of certain conditions like walking difficulty, poor or fair self-reported health, no exercise, extreme BMI values, and others. This operation resulted in a removal of around 100.000 data.
  
 **Multivariate and Univariate Analysis**
 
@@ -62,11 +72,18 @@ Following the data filtering, we conducted a multivariate analysis using pair pl
 ![Multivariate Analysis](images/multivariate2.png)
 ![Log Transformation Hours of Sleep](images/log2sleep.png)
 ![Log Transformation BMI](images/log2bmi.png)
+![Log Transformation Mental Health](log2mental.png)
 
 
 **Encoding and Correlation Analysis**
 
-The dataset underwent encoding processes for categorical variables using one-hot and label encoding. A correlation heatmap was then created to understand the relationships between different variables and the target variable. Based on this, variables with negligible correlations, such as `Ethnicity_Black`,`Ethnicity_Asian`,`Gender_M` and others, were considered for removal. After the removal we create another Heatmap this time with only the most relevant features.
+The dataset underwent encoding processes for categorical variables using one-hot and label encoding. A correlation heatmap was then created to understand the relationships between different variables and the target variable. Based on this, variables with negligible correlations, such as `Ethnicity_Black`,`Ethnicity_Asian`,`Gender_M` and others, were considered for removal, as we can see in the following chart:
+
+![Correlation with target variable](corr2targetvariable.png)
+
+After the removal we create another Heatmap this time with only the most relevant features.
+
+![Heatmap](heatmap_small.png)
 
 **Dataset Splitting, Scaling, and Reflection**
 
@@ -76,19 +93,18 @@ The dataset was split into training and test sets, and scaling was applied to en
 
 In this phase we selected Linear Regression, Decision Trees, Random Forests, and Hist Gradient Boosting models. These models were implemented to compare the results we obtained in our first analysis, but now we also added Linear Regression because as it’s a model very sensitive to non-normalized data we want to emphasize the result obtained after the transformation of the dataset. In fact due to the inconsistent results obtained after we implemented log transformations it was impossible for us to get some useful insights implementing it before.
 
-Results 
 
-We then reflected on the progress made. The decision to remove certain entries led to an improvement in the models' performance as evidenced by lower average error (MAE) and higher R-squared values. This affirmed the importance of thorough data cleaning in predictive modeling.
+We have synthesized our journey into a flowchart to provide readers with a clear overview of the steps we followed.
+
+![FLowchart](flowchart.png)
 
 
-
-
-## Experimental design
+## Experimental design 🔬
 
 Our project's experimental design was methodically organized into two distinct phases, each pivotal in assessing the influence of data preprocessing on the performance of various predictive models.
 
 *Phase One: Baseline Model Evaluation*
-The initial phase focused on evaluating a suite of predictive models using the original, unmodified dataset. The primary objective here was to establish baseline benchmarks. This was crucial for understanding the initial predictive capabilities of each model and observing how they interacted with the complexities of our dataset. This phase served as the foundation for comparison in our subsequent analysis.
+The initial phase focused on evaluating a suite of predictive models using the original dataset. The primary objective here was to establish baseline benchmarks. This was crucial for understanding the initial predictive capabilities of each model and observing how they interacted with the complexities of our dataset. This phase served as the foundation for comparison in our subsequent analysis.
 
 *Phase Two: Impact of Refined Data Preprocessing*
 In the second phase, the same set of models was reassessed, but this time on a dataset that had undergone extensive preprocessing. The aim was to measure the effect of this refined data treatment on model performance, offering a comparative analysis against our established baselines.
@@ -110,7 +126,7 @@ Our choice of evaluation metrics was guided by the need for accuracy and relevan
 Through this structured and meticulous experimental design, we aimed to not only assess the performance of various models under different conditions but also to understand the deeper impacts of data preprocessing on our predictive capabilities.
 
 
-## Results
+## Results 🏅
 
 In the first phase of our project, where we utilized the initial dataset, the results from our models indicated a modest level of predictive ability. Notably, the Hist Gradient Boosting model struck a balance between performance complexity and accuracy. This was evidenced by its Mean Absolute Error (MAE) and R-squared values, which pointed to a reasonable, yet not exceptional, level of accuracy and ability to explain the variance in the dataset.
 These initial findings were pivotal as they brought to light the critical need for model tuning. The moderate performance across the board suggested that while our models were on the right track, there was significant room for improvement, especially in terms of enhancing their predictive capabilities. This was particularly evident in their limited success in capturing the full spectrum of variance within our complex dataset.
@@ -129,7 +145,7 @@ The positive outcomes of this phase reinforced the value of our data cleaning an
 
 
 
-## Conclusions
+## Conclusions 🖊️
 
 In this group project, we had the invaluable opportunity to apply and refine our practical knowledge in the field of predictive modeling for healthcare data analysis. This experience allowed us to delve deep into the complexities of working with real-world health data, developing our understanding and skills in data preprocessing, model selection, tuning and interpretation of the results.
 This experience was not just about applying theoretical knowledge; it was a practical foray into the intricacies of real-world data and the subtleties of model behavior. We emerged from this project with a refined understanding of how data tells a story in the healthcare context and how our role is pivotal in interpreting and presenting this narrative.
