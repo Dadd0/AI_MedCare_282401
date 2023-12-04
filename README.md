@@ -28,11 +28,11 @@ Then we focused on understanding the distribution of numerical variables like `H
 
 Additionally, we used heatmaps to identify correlations among numerical variables.
 
-![Heatmap](initial_heatmap.png)
+![Heatmap](images/initial_heatmap.png)
 
 Moreover, we used boxplots in order to compare our target variable with respect to all the other categorical variables, and we made a pie chart for gender distribution and a countplot for ethnicity distribution to check whether these variables were balanced or not, discovering that gender is quite balanced while ethnicity is clearly unbalanced, with a majority of the white ethnicity. 
 
-![Distribution of Gender and Ethnicity](Gender_ethnicity_distribution.png)
+![Distribution of Gender and Ethnicity](images/Gender_ethnicity_distribution.png)
 
 **Identification of Anomalies**
 
@@ -46,7 +46,7 @@ As the features `Mental Health` and `Physical Health` both have most of their da
 
 In the preprocessing stage for the complete dataset, we removed potential outliers, such as individuals with unusually high or low BMI values or those sleeping more than 12 hours per day. We also removed the `PatientID` feature, which was deemed irrelevant. The dataset then underwent encoding processes, including label and one-hot encoding, tailored to the nature of our data. Subsequent correlation analysis led to the elimination of certain variables that showed minimal correlation with physical health, including ethnicities, gender, skin cancer, and alcohol consumption data, as we can see in the following chart:
 
-![Correlation with physical health](corr_physicalhealth.png)
+![Correlation with physical health](images/corr_physicalhealth.png)
 
 The dataset was then split into training and testing subsets, followed by scaling, to prepare it for the modeling phase.
 
@@ -72,18 +72,18 @@ Following the data filtering, we conducted a multivariate analysis using pair pl
 ![Multivariate Analysis](images/multivariate2.png)
 ![Log Transformation Hours of Sleep](images/log2sleep.png)
 ![Log Transformation BMI](images/log2bmi.png)
-![Log Transformation Mental Health](log2mental.png)
+![Log Transformation Mental Health](images/log2mental.png)
 
 
 **Encoding and Correlation Analysis**
 
 The dataset underwent encoding processes for categorical variables using one-hot and label encoding. A correlation heatmap was then created to understand the relationships between different variables and the target variable. Based on this, variables with negligible correlations, such as `Ethnicity_Black`,`Ethnicity_Asian`,`Gender_M` and others, were considered for removal, as we can see in the following chart:
 
-![Correlation with target variable](corr2targetvariable.png)
+![Correlation with target variable](images/corr2targetvariable.png)
 
 After the removal we create another Heatmap this time with only the most relevant features.
 
-![Heatmap](heatmap_small.png)
+![Heatmap](images/heatmap_small.png)
 
 **Dataset Splitting, Scaling, and Reflection**
 
@@ -96,7 +96,7 @@ In this phase we selected Linear Regression, Decision Trees, Random Forests, and
 
 We have synthesized our journey into a flowchart to provide readers with a clear overview of the steps we followed.
 
-![FLowchart](flowchart.png)
+![FLowchart](images/flowchart.png)
 
 
 ## Experimental design 🔬
